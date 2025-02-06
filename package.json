@@ -1,0 +1,27 @@
+{
+  "name": "daproj",
+  "version": "0.0.1",
+  "description": "Da Project",
+  "license": "UNLICENSED",
+  "exports": {
+    ".": "./index.mjs",
+    "./eslint": "./eslint/index.mjs",
+    "./prettier/plugins": "./prettier/plugins/index.mjs"
+  },
+  "main": "index.mjs",
+  "files": [
+    "eslint/",
+    "prettier/plugins/"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^3.0.1",
+    "@stylistic/eslint-plugin-ts": "3.0.1",
+    "@typescript-eslint/eslint-plugin": "8.23.0",
+    "eslint": "9.19.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jest": "28.11.0",
+    "globals": "15.14.0"
+  }
+}
