@@ -4,14 +4,13 @@
   "description": "Da Project",
   "license": "UNLICENSED",
   "exports": {
-    ".": "./index.mjs",
-    "./eslint": "./eslint/index.mjs",
-    "./prettier/plugins": "./prettier/plugins/index.mjs"
+    ".": "./src/index.mjs",
+    "./eslint": "./src/eslint/index.mjs",
+    "./prettier/plugins": "./src/prettier/plugins/index.mjs"
   },
-  "main": "index.mjs",
+  "main": "src/index.mjs",
   "files": [
-    "eslint/",
-    "prettier/plugins/"
+    "src/*"
   ],
   "scripts": {},
   "devDependencies": {
