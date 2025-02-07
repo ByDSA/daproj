@@ -1,12 +1,11 @@
 {
   "name": "daproj",
-  "version": "0.0.1",
-  "description": "Da Project",
+  "version": "0.0.2",
+  "description": "A comprehensive library/program for managing programming projects. It includes tools for linting, styling, testing, deployment, and support files for projects, covering all aspects of software infrastructure.",
   "license": "UNLICENSED",
   "exports": {
     ".": "./src/index.mjs",
-    "./eslint": "./src/eslint/index.mjs",
-    "./prettier/plugins": "./src/prettier/plugins/index.mjs"
+    "./*": "./src/*"
   },
   "main": "src/index.mjs",
   "files": [
@@ -14,7 +13,7 @@
   ],
   "scripts": {},
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^3.0.1",
+    "@stylistic/eslint-plugin": "3.0.1",
     "@stylistic/eslint-plugin-ts": "3.0.1",
     "@typescript-eslint/eslint-plugin": "8.23.0",
     "eslint": "9.19.0",
