@@ -5,7 +5,9 @@
   "license": "UNLICENSED",
   "exports": {
     ".": "./src/index.mjs",
-    "./*": "./src/*"
+    "./*": "./src/*",
+    "./prettier/plugins": "./src/prettier/plugins/index.mjs",
+    "./eslint": "./src/eslint/index.mjs"
   },
   "main": "src/index.mjs",
   "files": [
