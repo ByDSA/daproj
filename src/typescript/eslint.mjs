@@ -3,6 +3,8 @@ import { plugin as customPlugin } from "../eslint/custom-plugins/eslint-plugin-c
 import stylisticTsMod from "./eslint.config.stylisticTs.mjs";
 import typescriptMod from "./eslint.config.typescript.mjs";
 
+import 'eslint-import-resolver-typescript'; // Para que funcione "import/resolver".typescript
+
 export const plugins = {
   "@typescript-eslint": typescriptMod.plugin,
   "@stylistic/ts": stylisticTsMod.plugin,
