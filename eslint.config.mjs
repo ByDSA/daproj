@@ -1,7 +1,7 @@
-import { Dependencies } from "./index.mjs";
-import { generateConfigs } from "./eslint/index.mjs";
+import { Dependencies } from "./src/index.mjs";
+import { generateConfigs } from "./src/eslint/index.mjs";
 
-const generatedConfigs = generateConfigs( {
+const generatedConfigs = await generateConfigs( {
   [Dependencies.Eslint]: true,
 } );
 

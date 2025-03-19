@@ -1,6 +1,7 @@
 // @ts-check
 
 // @ts-ignore
+// eslint-disable-next-line import/newline-after-import
 import jestPlugin from "eslint-plugin-jest";
 // @ts-ignore
 import globals from "globals";
@@ -72,7 +73,6 @@ export function generateConfigs(args) {
       },
       rules: {
         "@typescript-eslint/no-floating-promises": "off",
-        "custom/mongoose-pascalcase-models": "off",
       },
       languageOptions: {
         parserOptions: {

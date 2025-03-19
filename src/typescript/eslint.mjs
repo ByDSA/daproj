@@ -1,17 +1,20 @@
 import { Dependencies } from "../index.mjs";
-import { plugin as customPlugin } from "../eslint/custom-plugins/eslint-plugin-custom.mjs";
+import * as daproj from "../eslint/custom-plugin/eslint-plugin-daproj.mjs";
 import stylisticTsMod from "./eslint.config.stylisticTs.mjs";
 import typescriptMod from "./eslint.config.typescript.mjs";
 
-import 'eslint-import-resolver-typescript'; // Para que funcione "import/resolver".typescript
+// Para que funcione "import/resolver".typescript
+import "eslint-import-resolver-typescript";
 
 export const plugins = {
   "@typescript-eslint": typescriptMod.plugin,
   "@stylistic/ts": stylisticTsMod.plugin,
+  daproj: daproj.plugin,
 };
 const rules = {
   ...typescriptMod.rules,
   ...stylisticTsMod.rules,
+  ...daproj.defaultRules,
 };
 const settings = {
   "import/parsers": {
@@ -25,13 +28,6 @@ const settings = {
       alwaysTryTypes: true,
     },
   },
-};
-const customPluginsRules = {
-  "custom/indent-after-decorator": "error",
-  "custom/no-blank-lines-after-decorator": "error",
-  "custom/no-blank-lines-between-decorators": "error",
-  "custom/no-leading-blank-lines": "error",
-  "custom/mongoose-pascalcase-models": "error",
 };
 
 export function generateConfigs(args) {
@@ -50,11 +46,9 @@ export function generateConfigs(args) {
       },
       plugins: {
         ...plugins,
-        custom: customPlugin,
       },
       rules: {
         ...rules,
-        ...customPluginsRules,
       },
     },
   ];

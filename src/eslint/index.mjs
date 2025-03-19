@@ -1,6 +1,6 @@
 // @ts-check
 import { generateConfigs as generateConfigsJest } from "../testing/jest/eslint.mjs";
-import { Dependencies } from "../index.mjs";
+import { ALL_KEY_DEPENDENCIES, Dependencies, DEPENDENCIES_AUTO } from "../index.mjs";
 import { generateConfigs as generateConfigsTs } from "../typescript/eslint.mjs";
 import { generateConfigs as generateConfigsReact } from "../react/eslint.mjs";
 import { generateConfigs as generateConfigsPrettier } from "../prettier/eslint.mjs";
@@ -8,9 +8,16 @@ import { generateConfigs as generateConfigsNode } from "../node/eslint.mjs";
 import { generateConfigs as generateConfigsZx } from "../zx/eslint.mjs";
 import { generateConfigs as generateConfigsEslint } from "./eslint.mjs";
 import { generateConfigs as generateConfigsCommon } from "./eslint.config.common.mjs";
+import { fixAutoArgs } from "./auto-args.mjs";
 
-export function generateConfigs(args) {
+export async function generateConfigs(args) {
   const ret = [];
+
+  if (
+    args[DEPENDENCIES_AUTO]
+    || (args[DEPENDENCIES_AUTO] === false && ALL_KEY_DEPENDENCIES.some(k=>args[k] !== undefined))
+  )
+    await fixAutoArgs(args);
 
   ret.push(...generateConfigsCommon(args));
 

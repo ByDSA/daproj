@@ -5,6 +5,9 @@ const globalsZx = {
   fs: false,
   cd: true,
   chalk: true,
+  glob: true,
+  echo: true,
+  spinner: true,
 };
 
 export function generateConfigs(_args) {

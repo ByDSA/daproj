@@ -1,46 +1,17 @@
 /* eslint-disable max-len */
 /* eslint-disable func-names */
-
-import { NAME as mongoosePascalCaseModelsName, rule as mongoosePascalCaseModelsRule } from "./rules/mongoose-pascalcase-models.mjs";
-import { NAME as indentAfterDecoratorName, rule as indentAfterDecoratorRule } from "./rules/indent-after-decorator.mjs";
+import * as mongoosePascalCaseModels from "./rules/mongoose-pascalcase-models.mjs";
+import * as indentAfterDecorator from "./rules/indent-after-decorator.mjs";
+import * as emptyLineAfterComment from "./rules/empty-line-after-comment.mjs";
+import * as noLeadingBlankLines from "./rules/no-leading-blank-lines.mjs";
 
 export const plugin = {
   meta: {
-    name: "eslint-plugin-custom",
-    version: "0.0.1",
+    name: "eslint-plugin-daproj",
+    version: "0.0.2",
   },
   rules: {
-    "no-leading-blank-lines": {
-      meta: {
-        fixable: "code",
-      },
-      create(context) {
-        const checkNode = (node) => {
-          const sourceCode = context.getSourceCode();
-          const { lines } = sourceCode;
-          let line = 0;
-
-          while (line < lines.length && lines[line].trim() === "") {
-            context.report( {
-              node,
-              loc: { line: line + 1, column: 0 },
-              message: "Leading blank lines are not allowed.",
-              fix: function (fixer) {
-                const rangeStart = sourceCode.getIndexFromLoc( { line: line + 1, column: 0 } );
-                const rangeEnd = sourceCode.getIndexFromLoc( { line: line + 2, column: 0 } );
-
-                return fixer.removeRange([rangeStart, rangeEnd]);
-              },
-            } );
-            line++;
-          }
-        };
-
-        return {
-          Program: checkNode,
-        };
-      },
-    },
+    [noLeadingBlankLines.NAME]: noLeadingBlankLines.rule,
     "no-blank-lines-after-decorator": {
       meta: {
         fixable: "code",
@@ -117,7 +88,17 @@ export const plugin = {
         };
       },
     },
-    [indentAfterDecoratorName]: indentAfterDecoratorRule,
-    [mongoosePascalCaseModelsName]: mongoosePascalCaseModelsRule,
+    [indentAfterDecorator.NAME]: indentAfterDecorator.rule,
+    [mongoosePascalCaseModels.NAME]: mongoosePascalCaseModels.rule,
+    [emptyLineAfterComment.NAME]: emptyLineAfterComment.rule,
   },
+};
+
+export const defaultRules = {
+  "daproj/indent-after-decorator": "error",
+  "daproj/no-blank-lines-after-decorator": "error",
+  "daproj/no-blank-lines-between-decorators": "error",
+  "daproj/no-leading-blank-lines": "error",
+  "daproj/mongoose-pascalcase-models": "off", // requires TS processor
+  "daproj/empty-line-after-comment": "error",
 };

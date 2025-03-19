@@ -4,9 +4,9 @@ import { Dependencies } from "daproj";
 import { rules as rulesAirbnb } from "./eslint.config.airbnb.mjs";
 import { plugin as pluginImport, rules as rulesImport } from "./eslint.config.import.mjs";
 import { rules as rulesStylistic, plugin as pluginStylistic } from "./eslint.config.stylistic.mjs";
+import * as daproj from "./custom-plugin/eslint-plugin-daproj.mjs";
 
 // @ts-check
-
 const formatRules = {
   indent: [
     "error",
@@ -27,6 +27,7 @@ const formatRules = {
   "linebreak-style": ["error", "unix"],
 };
 const otherNoPluginRules = {
+  "no-continue": "off",
   "no-unused-vars": [
     "error",
     {
@@ -166,7 +167,7 @@ const otherNoPluginRules = {
   "no-case-declarations": "error",
   "no-fallthrough": "error",
   "object-curly-newline": "off", // deprecated. Usar @stylistic
-  "no-restricted-imports": [
+  "no-restricted-imports": [ // Para obligar a poner el prefijo "node:"
     "error",
     "fs",
     "path",
@@ -187,10 +188,12 @@ const rules = {
   ...noPluginRules,
   ...rulesImport,
   ...rulesStylistic,
+  ...daproj.defaultRules,
 };
 const plugins = {
   import: pluginImport,
   "@stylistic": pluginStylistic,
+  daproj: daproj.plugin,
 };
 const configs = [
   // Scripting .mjs:
@@ -206,7 +209,6 @@ const configs = [
     },
     rules: {
       ...rules,
-      "import/no-internal-modules": "off",
       "import/no-extraneous-dependencies": "off",
     },
   },
@@ -242,6 +244,9 @@ export function generateConfigs(args) {
   if (args[Dependencies.React])
     files.push("**/*.jsx");
 
+  const commonGlobals = Object.keys(globals.node)
+    .filter(key => key in globals.browser)
+    .reduce((obj, key) => ( { ...obj, [key]: globals.node[key] } ), {} );
   const ret = [
     {
       files,
@@ -250,6 +255,11 @@ export function generateConfigs(args) {
       },
       rules: {
         ...rules,
+      },
+      languageOptions: {
+        globals: {
+          ...commonGlobals,
+        },
       },
     },
     ...configs,

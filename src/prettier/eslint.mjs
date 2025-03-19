@@ -4,7 +4,6 @@ const prettier = [
     rules: {
       "import/no-default-export": "off",
       "import/prefer-default-export": "error",
-      "import/no-internal-modules": "off",
       "import/no-extraneous-dependencies": "off",
     },
   },
