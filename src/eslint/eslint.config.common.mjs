@@ -123,7 +123,16 @@ const otherNoPluginRules = {
   ],
   "no-var": "error",
   "dot-location": ["error", "property"],
-  "prefer-destructuring": "error",
+  "prefer-destructuring": ["error", {
+    VariableDeclarator: {
+      array: false,
+      object: true,
+    },
+    AssignmentExpression: {
+      array: false,
+      object: false,
+    },
+  }],
   "prefer-exponentiation-operator": "error",
   "operator-assignment": ["error", "always"],
   "require-await": "error",
@@ -170,6 +179,7 @@ const otherNoPluginRules = {
   "no-restricted-imports": [ // Para obligar a poner el prefijo "node:"
     "error",
     "fs",
+    "url",
     "path",
     "child_process",
     "util",
