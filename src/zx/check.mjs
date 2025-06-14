@@ -6,9 +6,14 @@ export async function defaultCheck() {
   const projectName = await findInPackageJsonName();
 
   try {
-    await spinnerVerbose(projectName + ": Installing dependencies ...", async () => {
-      await $`rm -rf node_modules`;
-      await $`pnpm i --ignore-workspace`;
+    await spinnerVerbose(projectName + ": (Re)Installing dependencies ...", async () => {
+      const { stdout } = await $`pnpm pkg get scripts.reinstall`;
+
+      if (stdout.trim() === "{}") {
+        await $`rm -rf node_modules`;
+        await $`pnpm i --ignore-workspace`;
+      } else
+        await $`pnpm reinstall`;
     } );
 
     await spinnerVerbose(projectName + ": Linting ...", ()=> $`pnpm lint`);
