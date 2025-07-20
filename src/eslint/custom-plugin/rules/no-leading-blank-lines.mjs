@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 export const NAME = "no-leading-blank-lines";
 
 export const rule = {

@@ -19,7 +19,8 @@ export const rule = {
             if (decoratorIndent !== previousDecoratorStartColumn) {
               context.report( {
                 node,
-                message: `Decorator should have the same indentation as the previous decorator. Expected ${previousDecoratorStartColumn} spaces but found ${decoratorIndent}.`,
+                message: `Decorator should have the same indentation as the previous decorator. \
+                  Expected ${previousDecoratorStartColumn} spaces but found ${decoratorIndent}.`,
 
                 fix: (fixer) => {
                   const spaces = "\n" + " ".repeat(previousDecoratorStartColumn);
@@ -41,7 +42,8 @@ export const rule = {
           if (decoratorIndent !== propertyIndent) {
             context.report( {
               node,
-              message: `Property should have the same indentation as its decorator. Expected ${decoratorIndent} spaces but found ${propertyIndent}.`,
+              message: `Property should have the same indentation as its decorator. Expected \
+${decoratorIndent} spaces but found ${propertyIndent}.`,
               fix: (fixer) => {
                 const spaces = " ".repeat(decoratorIndent);
                 let propertyTokenStartColumn = node.key.loc.start.column;

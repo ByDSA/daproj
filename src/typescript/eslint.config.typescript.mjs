@@ -1,4 +1,3 @@
-
 import plugin from "@typescript-eslint/eslint-plugin";
 import parser from "@typescript-eslint/parser";
 
@@ -9,6 +8,7 @@ const rules = {
   "@typescript-eslint/no-wrapper-object-types": "error", // Impide usar los tipos String, Number, Boolean, Symbol, Object
   "@typescript-eslint/sort-type-constituents": "error", // Ordena los union/intersection
   "no-unused-vars": "off", // impide declarar variables que no se usan
+  "max-len": "off", // Para que no entre en conflicto con daproj/max-len
   "@typescript-eslint/no-unused-vars": [
     "error",
     {
@@ -46,6 +46,7 @@ const rules = {
       },
       leadingUnderscore: "allow",
       trailingUnderscore: "allow",
+
       /* Ejemplos:
         const UN_ARRAY = [...];
         const unArray = [...];

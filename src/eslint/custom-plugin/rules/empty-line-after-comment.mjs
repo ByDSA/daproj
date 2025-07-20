@@ -65,16 +65,28 @@ export const rule = {
                 const nextCommentLineText = lines[nextCommentLine - 1].trim();
                 const nextCommentLineType = nextCommentLineText.startsWith("//") ? "line" : "block";
 
-                if (props.allowBetweenLines && commentLineType === "line" && nextCommentLineType === "line")
+                if (
+                  props.allowBetweenLines && commentLineType === "line"
+                  && nextCommentLineType === "line"
+                )
                   return;
 
-                if (props.allowBetweenBlocks && commentLineType === "block" && nextCommentLineType === "block")
+                if (
+                  props.allowBetweenBlocks && commentLineType === "block"
+                  && nextCommentLineType === "block"
+                )
                   return;
 
-                if (props.allowBetweenLineAndBlock && commentLineType === "line" && nextCommentLineType === "block")
+                if (
+                  props.allowBetweenLineAndBlock
+                  && commentLineType === "line" && nextCommentLineType === "block"
+                )
                   return;
 
-                if (props.allowBetweenBlockAndLine && commentLineType === "block" && nextCommentLineType === "line")
+                if (
+                  props.allowBetweenBlockAndLine
+                  && commentLineType === "block" && nextCommentLineType === "line"
+                )
                   return;
               }
             }

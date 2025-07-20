@@ -25,7 +25,10 @@ export const rule = {
           const type = checker.getTypeAtLocation(tsNode);
 
           // Verifica si es un modelo de Mongoose
-          if (type.symbol && type.symbol.escapedName === "Model" && type.symbol.parent.escapedName === "\"mongoose\"") {
+          if (
+            type.symbol && type.symbol.escapedName === "Model"
+            && type.symbol.parent.escapedName === "\"mongoose\""
+          ) {
             const variableName = declaration.id.name;
 
             // Valida PascalCase

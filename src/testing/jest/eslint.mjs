@@ -1,5 +1,4 @@
 // @ts-check
-
 // @ts-ignore
 // eslint-disable-next-line import/newline-after-import
 import jestPlugin from "eslint-plugin-jest";
